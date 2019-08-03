@@ -9,6 +9,8 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const optimization = require('./config/optimization')
+
 const isDev = process.env.NODE_ENV === 'development'
 
 const WORKSPACE = path.resolve(__dirname, '../')
@@ -51,29 +53,7 @@ module.exports = {
             'core-js/es6/set',
         ]
     },
-    optimization: {
-        minimizer: [
-            new OptimizeCssAssetsPlugin({
-                cssProcessor: require('cssnano'),
-                cssProcessorOptions:{
-                    autoprefixer: {
-                        browsers: ['android 4.4', 'ios 8'],
-                        add: true
-                    },
-                    discardComments: { removeAll: true },
-                    zindex: false,
-                    reduceIdents: false
-                }
-            }),
-            new UglifyJSPlugin({
-                parallel: true,
-                sourceMap: false,
-                uglifyOptions: {
-                    output: { comments: false }
-                }
-            })
-        ]
-    },
+    optimization,
     module: {
         rules: [
             {

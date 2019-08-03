@@ -8,6 +8,7 @@ const gulpUtil = require('gulp-util')
 const fse = require('fs-extra')
 const runSequence = require('run-sequence')
 const webpack = require('webpack')
+const express = require('express')
 
 /**
  * 运行webpack
@@ -52,4 +53,6 @@ gulp.task('dll', cb => {
 
 gulp.task('dev-server', () => {
     console.log('>>>>dev-server task begin...')
+    const server = express()
+
 })
