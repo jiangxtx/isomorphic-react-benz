@@ -1,0 +1,40 @@
+{
+  "name": "isomorphic-react-benz",
+  "version": "1.0.0",
+  "description": "基于react的csr &amp; ssr同构框架搭建.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=development ENABLE_DEBUG=true PORT=3000 node_modules/.bin/gulp dev",
+    "setup": "node build/install-hooks.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangxtx/isomorphic-react-benz.git"
+  },
+  "keywords": [
+    "isomorphic",
+    "ssr",
+    "react"
+  ],
+  "author": "jiangxtx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangxtx/isomorphic-react-benz/issues"
+  },
+  "homepage": "https://github.com/jiangxtx/isomorphic-react-benz#readme",
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "gulp": "^4.0.2",
+    "gulp-util": "^3.0.8",
+    "run-sequence": "^2.2.1",
+    "shelljs": "^0.8.3",
+    "webpack": "^4.39.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0"
+  }
+}
