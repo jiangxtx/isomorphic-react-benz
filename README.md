@@ -10,11 +10,13 @@
 ### eslint
 eslint的接入。TODO...
 
-## .gitlab-ci.yml
+### .gitlab-ci.yml
 具体可参考博客：https://blog.csdn.net/kunyus/article/details/81390330
 
 ### nvm
 node 多版本控制, node version manage.
 
 可参考博客：https://segmentfault.com/a/1190000010252661#articleHeader1
+
+### cssnano
 

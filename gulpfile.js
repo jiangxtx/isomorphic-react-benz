@@ -1,6 +1,5 @@
 /**
  * @file gulpfile.js
- * @author shaoling(shaoling@pinduoudo.com)
  */
 
 const path = require('path')
@@ -31,9 +30,11 @@ function webpackRun(webpackConfig, cb) {
  * develop work flow
  */
 gulp.task('dev', () => {
-    if (fse.existsSync('')) {
+    if (fse.existsSync('./dist/react_vendor.manifest.json')) {
         gulp.run('dev-server')
     } else {
+        // Maybe error here: [TypeError: gulp.hasTask is not a function]
+        // maybe version conflicts. installed gulp@3x and resolved.
         runSequence('dll', 'dev-server')
     }
 })
@@ -43,8 +44,12 @@ gulp.task('dev', () => {
  */
 gulp.task('dll', cb => {
     console.log('>>>>Dll compiling……')
-    webpackRun(require(''), () => {
+    webpackRun(require('./build/webpack.dll.config'), () => {
         console.log('>>>>Dll compiled successfully!')
         cb && cb()
     })
+})
+
+gulp.task('dev-server', () => {
+    console.log('>>>>dev-server task begin...')
 })
