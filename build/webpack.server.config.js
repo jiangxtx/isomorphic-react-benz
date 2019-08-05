@@ -4,7 +4,8 @@
 
 const webpack = require('webpack')
 const path = require('path')
-const Happypack = require('happypack') // Happypack 只是作用在 loader 上，使用多个进程同时对文件进行编译
+const HappyPack = require('happypack') // Happypack 只是作用在 loader 上，使用多个进程同时对文件进行编译
+const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 
 function resolve(...args) {
     return path.resolve(__dirname, ...args)
@@ -17,7 +18,7 @@ const moduleCSSReg = [
 
 module.exports = {
     mode: "development",
-    target: "node",
+    target: "node", // in order to ignore built-in modules like path, fs, etc.
     entry: [
         resolve('../app.js')
     ],
@@ -28,11 +29,11 @@ module.exports = {
     },
     devtool: "source-map",
     module: {
-        rules: [{
+        rules: [/*{
             test: moduleCSSReg,
             exclude: /node_modules/,
             use: ['happypack/loader?id=modulescss']
-        }, {
+        }, */{
             test: /\.js$/,
             exclude: /node_modules/,
             use: ['happypack/loader?id=jsx']
@@ -42,9 +43,27 @@ module.exports = {
             use: ['happypack/loader?id=raw']
         }]
     },
-    resolve: {
-        alias: {
-            // "@widgets": path.join()
-        }
+    // resolve: { }, // TODO...
+    plugins: [
+        new HappyPack({
+            id: 'jsx',
+            threadPool: happyThreadPool,
+            loaders: [{
+                loader: 'babel-loader',
+                query: require('./config/serverBabel.config')
+            }]
+        }),
+        new HappyPack({
+            id: 'raw',
+            threadPool: happyThreadPool,
+            loaders: [{
+                loader: 'raw-loader', // A loader for webpack that lets you import files as a string.
+            }]
+        }),
+    ],
+    node: {
+        console: false,
+        __filename: true,
+        __dirname: true
     }
 }

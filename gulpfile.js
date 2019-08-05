@@ -51,8 +51,35 @@ gulp.task('dll', cb => {
     })
 })
 
+const server = express()
 gulp.task('dev-server', () => {
     console.log('>>>>dev-server task begin...')
-    const server = express()
+    const webpackServerConfig = require('./build/webpack.server.config')
+    const { output } = webpackServerConfig;
+    const outputFilePath = path.join(output.path, output.filename) // app.js
 
+    let app, initialized;
+
+    webpack(webpackServerConfig).watch({
+        aggregateTimeout: 300, // 在重建之前添加一个延迟
+        ignored: [/node_modules/, /^(?!\.(iso|module|mjs)).*\.scss$/],
+    }, (err, stats) => {
+        if (err) throw err
+
+        app = require(outputFilePath)
+        if (initialized) {
+            delete require.cache(outputFilePath)
+            return
+        }
+
+        console.log(`>>>Starting ${output.filename} at ${new Date().toLocaleDateString()} ...`)
+        server.use((req, res, next) => app.handle(req, res, next))
+
+        const port = +process.env.PORT || 3000
+        server.listen(port, () => {
+            console.log(`>>>server is listening on port: ${port}`)
+        })
+
+        initialized = true
+    })
 })
