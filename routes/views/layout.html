@@ -1,45 +1,28 @@
-Html Webpack Plugin:
-<pre>
-  Error: Child compilation failed:
-  Entry module not found: Error: Can't resolve '/Users/xiajiujiang/Documents/_MY_PROJ/isomorphic-react-benz/routes/views/layout.htm  l' in '/Users/xiajiujiang/Documents/_MY_PROJ/isomorphic-react-benz':
-  Error: Can't resolve '/Users/xiajiujiang/Documents/_MY_PROJ/isomorphic-react-benz/routes/views/layout.html' in '/Users/xiajiujian  g/Documents/_MY_PROJ/isomorphic-react-benz'
-  
-  - compiler.js:79 childCompiler.runAsChild
-    [isomorphic-react-benz]/[html-webpack-plugin]/lib/compiler.js:79:16
-  
-  - Compiler.js:343 compile
-    [isomorphic-react-benz]/[webpack]/lib/Compiler.js:343:11
-  
-  - Compiler.js:671 hooks.afterCompile.callAsync.err
-    [isomorphic-react-benz]/[webpack]/lib/Compiler.js:671:15
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [isomorphic-react-benz]/[tapable]/lib/Hook.js:154:20
-  
-  - Compiler.js:668 compilation.seal.err
-    [isomorphic-react-benz]/[webpack]/lib/Compiler.js:668:31
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [isomorphic-react-benz]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1385 hooks.optimizeAssets.callAsync.err
-    [isomorphic-react-benz]/[webpack]/lib/Compilation.js:1385:35
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [isomorphic-react-benz]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1376 hooks.optimizeChunkAssets.callAsync.err
-    [isomorphic-react-benz]/[webpack]/lib/Compilation.js:1376:32
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [isomorphic-react-benz]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1371 hooks.additionalAssets.callAsync.err
-    [isomorphic-react-benz]/[webpack]/lib/Compilation.js:1371:36
-  
-  
-</pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta property="og:title" content="<%= locals.shareTitle ? locals.shareTitle : 'BENZ-SSR' %>"/>
+    <title><%= locals.title ? locals.title : 'BENZ-SSR'%></title>
+    <%-defineContent('style') %>
+    <%-defineContent('jsxStyle') %>
+</head>
+
+<%- body %>
+<% if (locals.ENABLE_DEBUG) { %>
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+<% } %>
+
+{{ for(var chunk in htmlWebpackPlugin.files.chunks){ }}
+    <script type="text/javascript" src="{{=htmlWebpackPlugin.files.chunks[chunk].entry}}" crossorigin></script>
+{{ } }}
+
+<%-defineContent('js') %>
+
+</html>
