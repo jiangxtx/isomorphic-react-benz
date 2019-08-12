@@ -19,7 +19,7 @@ function patchPagePrefix(pageList) {
  * @type {string[]}
  */
 const pagenameList = [
-    'yeli',
+    'alia', // 首个测试页
 ]
 
 module.exports = patchPagePrefix(pagenameList)

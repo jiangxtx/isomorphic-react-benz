@@ -7,6 +7,7 @@ function resolve (dir) {
 
 const alias = function() {
     return {
+        '@src': resolve('src'),
         reactApp: resolve('src/app'),
         vendor: resolve('static/vendor'),
         '@constants': resolve('src/constants'),

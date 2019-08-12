@@ -3,7 +3,7 @@
  */
 
 const pages = require('../../build/pages')
-const { ROUTE_PREFIX } = require('src/constants')
+const { ROUTE_PREFIX } = require('../../src/constants')
 
 const serverRoutes = pages.reduce(function (routes, pageName) {
     // TODO...兼容有的写了 benz_ladi.html 这样的写法，统一后可简化

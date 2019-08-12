@@ -67,10 +67,10 @@ gulp.task('dev-server', () => {
         if (err) throw err
 
         app = require(outputFilePath)
-        if (initialized) {
-            delete require.cache(outputFilePath)
-            return
-        }
+        // if (initialized) {
+        //     delete require.cache(outputFilePath)
+        //     return
+        // }
 
         console.log(`>>>Starting ${output.filename} at ${new Date().toLocaleDateString()} ...`)
         server.use((req, res, next) => app.handle(req, res, next))

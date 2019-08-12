@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser') // Express的中间件，用来实
 const ejs = require('ejs')
 const expressLayouts = require('express-ejs-layouts')
 const NODE_VIEW_DIST_DIR = require('./build/webpack.config.options').NODE_VIEW_DIST_DIR
+const routes = require('./routes')
 
 const app = express()
 app.use(cookieParser())
@@ -16,10 +17,10 @@ app.set('view engine','html') // 模板引擎设置为ejs
 app.set('layout', 'layout')
 app.set('views', NODE_VIEW_DIST_DIR)
 
-app.use(expressLayouts())
+app.use(expressLayouts)
 app.set('layout extractStyles', true)
 
 // important! project's routes.
-//  routes(app)
+routes(app)
 
 module.exports = app

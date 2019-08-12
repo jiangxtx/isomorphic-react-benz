@@ -34,7 +34,12 @@
     "fs-extra": "^8.1.0",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.8",
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "run-sequence": "^2.2.1",
+    "serialize-javascript": "^1.7.0",
     "shelljs": "^0.8.3",
     "styled-jsx": "^3.2.1",
     "webpack": "^4.39.1"
@@ -74,6 +79,7 @@
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^3.2.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prop-types": "^15.7.2",
     "raw-loader": "^3.1.0",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }
