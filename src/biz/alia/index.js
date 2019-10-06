@@ -5,6 +5,8 @@
 import React from 'react'
 import { appProvider } from '../../iso-frame/appProvider'
 
+import './index.scss';
+
 const configs = {
     serverTemplateName: 'benz_alia',
     title: '奔驰SSR',

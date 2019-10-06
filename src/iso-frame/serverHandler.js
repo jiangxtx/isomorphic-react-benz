@@ -41,6 +41,7 @@ export function serverHandler(App, options = {}) {
             res.render(appView, {
                 error: null,
                 content: html,
+                isUseHttps: true,
                 rawData: serialize({ test: 'ok' }, { isJSON: true })
             })
         } catch (e) {

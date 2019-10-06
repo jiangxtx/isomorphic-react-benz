@@ -1,0 +1,12 @@
+<body>
+<% if (error) { %>
+    <%- include('tpl/redirect.html', {error: error}) %>
+<% } else { %>
+    <div id="main"><% if (content) { %><%-content%><% } %></div>
+    <%- contentFor('js') %>
+    <script>
+        window.isUseHttps=<%-isUseHttps%>;
+        window.rawData=<%-rawData%>;
+    </script>
+<% } %>
+</body>

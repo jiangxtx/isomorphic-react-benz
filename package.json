@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development ENABLE_DEBUG=true PORT=3000 node_modules/.bin/gulp dev",
+    "dev": "cross-env NODE_ENV=development ENABLE_DEBUG=true PORT=3333 node_modules/.bin/gulp dev",
     "setup": "node build/install-hooks.js"
   },
   "repository": {

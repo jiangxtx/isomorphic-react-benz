@@ -75,7 +75,7 @@ gulp.task('dev-server', () => {
         console.log(`>>>Starting ${output.filename} at ${new Date().toLocaleDateString()} ...`)
         server.use((req, res, next) => app.handle(req, res, next))
 
-        const port = +process.env.PORT || 3000
+        const port = +process.env.PORT || 3333
         server.listen(port, () => {
             console.log(`>>>server is listening on port: ${port}`)
         })

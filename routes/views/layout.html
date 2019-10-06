@@ -2,9 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    {{ if (htmlWebpackPlugin.options.pageStartStr) { }}
-    <script>{{=htmlWebpackPlugin.options.pageStartStr}}</script>
-    {{ } }}
     <link rel="dns-prefetch" href="//cdn.yangkeduo.com">
     <link rel="dns-prefetch" href="//apiv4.yangkeduo.com">
     <link rel="dns-prefetch" href="//api.pinduoduo.com">
@@ -16,17 +13,10 @@
     <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <meta property="og:title" content="<%= locals.shareTitle ? locals.shareTitle : '拼多多商城' %>"/>
-    <meta property="og:description" content="<%= locals.shareDesc ? locals.shareDesc : '风靡全国的拼团商城，优质商品新鲜直供，快来一起拼多多吧' %>"/>
-    <meta property="og:image" content="<%= locals.shareImg ? locals.shareImg : 'https://pinduoduoimg.yangkeduo.com/base/logo.jpg'%>"/>
-    <title><%= locals.title ? locals.title : '拼多多'%></title>
+    <title><%= locals.title ? locals.title : 'react同构-奔驰'%></title>
     <%-defineContent('style') %>
     <%-defineContent('jsxStyle') %>
     <style><%-defineContent('isoCss') %></style>
-    <script>{{=htmlWebpackPlugin.options.htmlLogger}}</script>
-    {{ if (htmlWebpackPlugin.options.firstPaintStr) { }}
-    <script>{{=htmlWebpackPlugin.options.firstPaintStr}}</script>
-    {{ } }}
 </head>
 
 <%- body %>
@@ -34,11 +24,6 @@
   <script src="//cdn.jsdelivr.net/npm/eruda"></script>
   <script>eruda.init();</script>
 <% } %>
-<script type="text/javascript" src="https://cdn.yangkeduo.com/assets/js/babel_polyfill_6.26.0.js" crossorigin="anonymous"></script>
-<script>window.leoConfig=<%- JSON.stringify(locals.leoConfig || {}) %></script>
-<script>window.__THIRD_AREA=<%= locals.THIRD_AREA ? true : false%></script>
-
-<script>window.__512_BLOCK_DISABLED=<%= locals.__512_BLOCK_DISABLED ? true : false%></script>
 
   {{ for(var chunk in htmlWebpackPlugin.files.chunks){ }}
   <script type="text/javascript" src="{{=htmlWebpackPlugin.files.chunks[chunk].entry}}" crossorigin></script>
@@ -46,9 +31,5 @@
 
 
 <%-defineContent('js') %>
-
-{{ if (htmlWebpackPlugin.options.pageEndStr) { }}
-<script>{{=htmlWebpackPlugin.options.pageEndStr}}</script>
-{{ } }}
 
 </html>
